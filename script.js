@@ -19,18 +19,17 @@ fetch("https://handlers.education.launchcode.org/static/planets.json").then(func
 window.addEventListener("load", function() {
    let form = document.querySelector("form");
    form.addEventListener("submit", function(event) {
-      event.preventDefault()
       let pilotNameInput = document.querySelector("input[name=pilotName]");
       let copilotNameInput = document.querySelector("input[name=copilotName]");
       let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
       let cargoMassInput = document.querySelector("input[name=cargoMass]");
       if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
          alert("All fields are required!");
-         event.preventDefault();
+         // event.preventDefault();
       }
       if (typeof(pilotNameInput.value) !== string || typeof(copilotNameInput.value) !== string || isNaN(fuelLevelInput.value) || isNaN(cargoMassInput.value)) {
          alert("Valid input type required ");
-         event.preventDefault();
+         // event.preventDefault();
       }
       let launchStatusText = document.getElementById("launchStatus")
       let pilotStatusText = document.getElementById("pilotStatus")
@@ -63,6 +62,7 @@ window.addEventListener("load", function() {
       if(fuelStatusCheck === true && cargoStatusCheck === true){
          launchStatusText.innerHTML = "Shuttle is ready for launch"
          launchStatusText.style.color = "green"
+         faultyItems.style.visibility = "hidden"
       }
    })
 });
