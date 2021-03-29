@@ -1,33 +1,36 @@
 // Write your JavaScript code here!
-fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
-   response.json().then(function(json){
-      const div = document.getElementById("missionTarget")
-      const planetChoice = Math.floor(Math.random() * 6)
-      div.innerHTML = `
-         <h2>Mission Destination</h2>
-         <ol>
-            <li>Name: ${json[planetChoice].name}</li>
-            <li>Diameter: ${json[planetChoice].diameter}</li>
-            <li>Star: ${json[planetChoice].star}</li>
-            <li>Distance from Earth: ${json[planetChoice].distance}</li>
-            <li>Number of Moons: ${json[planetChoice].moons}</li>
-         </ol>
-            <img src="${json[planetChoice].image}">
-            `
-   })
-})
 window.addEventListener("load", function() {
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
+      response.json().then(function(json){
+         const div = document.getElementById("missionTarget")
+         const planetChoice = Math.floor(Math.random() * 6)
+         div.innerHTML = `
+            <h2>Mission Destination</h2>
+            <ol>
+               <li>Name: ${json[planetChoice].name}</li>
+               <li>Diameter: ${json[planetChoice].diameter}</li>
+               <li>Star: ${json[planetChoice].star}</li>
+               <li>Distance from Earth: ${json[planetChoice].distance}</li>
+               <li>Number of Moons: ${json[planetChoice].moons}</li>
+            </ol>
+               <img src="${json[planetChoice].image}">
+               `
+      })
+   })
    let form = document.querySelector("form");
    form.addEventListener("submit", function(event) {
+      event.preventDefault();
       let pilotNameInput = document.querySelector("input[name=pilotName]");
       let copilotNameInput = document.querySelector("input[name=copilotName]");
       let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
       let cargoMassInput = document.querySelector("input[name=cargoMass]");
+      console.log(pilotNameInput)
+      console.log(fuelLevelInput)
       if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
          alert("All fields are required!");
          // event.preventDefault();
-      }
-      if (typeof(pilotNameInput.value) !== string || typeof(copilotNameInput.value) !== string || isNaN(fuelLevelInput.value) || isNaN(cargoMassInput.value)) {
+      }      
+      if (typeof(pilotNameInput.value) !== "string" || typeof(copilotNameInput.value) !== "string" || isNaN(fuelLevelInput.value) || isNaN(cargoMassInput.value)) {
          alert("Valid input type required ");
          // event.preventDefault();
       }
